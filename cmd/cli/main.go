@@ -10,12 +10,12 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Printf("usage: %s <word>\n", os.Args[0])
+		fmt.Printf("usage: %s -h or --help\n", os.Args[0])
 		os.Exit(1)
 	}
 
-	lakotaFlag := flag.String("l", "", "")
-	pronunciationFlag := flag.String("p", "", "")
+	lakotaFlag := flag.String("l", "", "English translation of the given Lakota word")
+	pronunciationFlag := flag.String("p", "", "Pronunciation for the given Lakota word")
 	flag.Parse()
 
 	switch {

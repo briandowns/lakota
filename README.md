@@ -13,6 +13,7 @@ Package Lakota provides access to features that help you learn the Lakota langua
 
 * English to Lakota dictionary with pronunciations
 * Sign Language
+* CLI & HTTP JSON API
 
 ## Contributing
 
