@@ -1,21 +1,26 @@
-GO = go
-
 BINDIR = bin
-CLI_BINARY = lakota-cli
-API_BINARY = lakota-api
+BINARY = lakota
 
-.PHONY: cli
-cli: $(BINDIR)
-	$(GO) build -o $(BINDIR)/$(CLI_BINARY) cmd/cli/*.go
+VERSION := 0.1.0
 
-.PHONY: api
-api: $(BINDIR)
-	$(GO) build -o $(BINDIR)/$(API_BINARY) cmd/api/*.go
+CFLAGS := -static -O3 -Wall \
+	-Dgit_sha=$(shell git rev-parse HEAD) \
+	-Dapp_version=$(VERSION)
+
+$(BINDIR)/$(BINARY): clean
+	$(CC) $(CFLAGS) -o $@ main.c words.c
 
 $(BINDIR):
 	mkdir -p $(BINDIR)
 
+.PHONY: image-build
+image-build:
+	docker build -t briandowns/lakota:$(VERSION) .
+
+.PHONY: image-push
+image-push:
+	docker push briandowns/lakota:$(VERSION)
+
 .PHONY: clean
 clean: 
 	rm -f $(BINDIR)/*
-	$(GO) clean
