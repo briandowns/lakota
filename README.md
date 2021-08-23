@@ -13,7 +13,6 @@ Lakota provides access to features that help you learn the Lakota language.
 
 * English to Lakota dictionary with pronunciations
 * Sign Language
-* CLI & HTTP JSON API
 
 ## Run
 
