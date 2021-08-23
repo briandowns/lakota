@@ -21,6 +21,10 @@ Lakota provides access to features that help you learn the Lakota language.
 docker run -rm -it briandowns/lakota -l waste
 ```
 
+## Development
+
+The best way to go about development of the application / library is to use the `Makefile`. The `Makefile` manages versions, code building, and image building and pushing.
+
 ## Contributing
 
 Please feel free to open an issue or submit a PR!

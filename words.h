@@ -45,10 +45,12 @@ typedef struct {
 	char *pronunciation;
 } word_t;
 
-// words_dictionary is Lakota/English dictionary.
+/**
+ *  words_dictionary is Lakota/English dictionary.
+ */
 word_t words_dictionary[WORD_COUNT]  =  {
-	{.english = "an", .lakota  =  "wa", .pronunciation  =  "wahn"},
-	{.english = "abandon", .lakota  =  "ayusta", .pronunciation = "ah-yue-shdah"},
+	{.english = "an", .lakota = "wa", .pronunciation = "wahn"},
+	{.english = "abandon", .lakota = "ayusta", .pronunciation = "ah-yue-shdah"},
 	{.english = "abdomen", .lakota = "ceyohe", .pronunciation = "chay-yoh-hay"},
 	{.english = "ability", .lakota = "ikipi", .pronunciation = "ee-kee-pee"},
 	{.english = "able", .lakota = "kihi", .pronunciation = "o-kee-hee"},
