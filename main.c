@@ -37,7 +37,8 @@
 
 #define USAGE                                                    \
     "usage: %s [-vh]\n"                                          \
-    "  -l        english translation of the given Lakota word\n" \
+    "  -l        English translation of the given Lakota word\n" \
+    "  -e        Lakota translation of the given English word\n" \
     "  -p        pronunciation for the given Lakota word\n"      \
     "  -s        search for similar words for a given string\n"  \
     "  -v        version\n"                                      \
@@ -52,12 +53,19 @@ main(int argc, char **argv)
 
     int opt;
     
-    while ((opt = getopt(argc, argv, "l:p:s:vh")) != -1) {
+    while ((opt = getopt(argc, argv, "l:e:p:s:vh")) != -1) {
         switch (opt) {
             case 'l':
                 for (int i = 0; i < WORD_COUNT; i++) {
                     if (strcmp(optarg, words_dictionary[i].lakota) == 0) {
                         printf("%s\n", words_dictionary[i].english);
+                    }
+                }
+                break;
+            case 'e':
+                for (int i = 0; i < WORD_COUNT; i++) {
+                    if (strcmp(optarg, words_dictionary[i].english) == 0) {
+                        printf("%s (%s)\n", words_dictionary[i].lakota, words_dictionary[i].pronunciation);
                     }
                 }
                 break;
@@ -83,6 +91,9 @@ main(int argc, char **argv)
                 printf("version: %s - git: %s\n", STR(app_version), STR(git_sha));
                 break;
             case 'h':
+                printf(USAGE, STR(bin_name));
+                break;
+            default:
                 printf(USAGE, STR(bin_name));
                 break;
         }
