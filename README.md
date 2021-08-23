@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="jail"><img src="https://www.stjo.org/wp-content/Media/Images/Page/Four-Directions/four-directions.png" width="200" height="200" border="0" alt="lakota"></a>
+  <a href="lakota"><img src="https://www.stjo.org/wp-content/Media/Images/Page/Four-Directions/four-directions.png" width="200" height="200" border="0" alt="lakota"></a>
 </p>
 <p align="center">
   <a href="https://godoc.org/github.com/briandowns/lakota"><img src="https://godoc.org/github.com/briandowns/lakota?status.svg" alt="GoDoc"></a>
@@ -9,15 +9,21 @@
 
 # Lakota
 
-Package Lakota provides access to features that help you learn the Lakota language.
+Lakota provides access to features that help you learn the Lakota language.
 
 * English to Lakota dictionary with pronunciations
 * Sign Language
 * CLI & HTTP JSON API
 
+## Run
+
+```sh
+docker run -rm -it briandowns/lakota -l waste
+```
+
 ## Contributing
 
-Please feel free to open a PR!
+Please feel free to open an issue or submit a PR!
 
 ## License
 

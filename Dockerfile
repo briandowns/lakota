@@ -1,4 +1,4 @@
-FROM alpine:3.12 as builder
+FROM alpine:3.14 as builder
 
 RUN apk update && apk upgrade && \
     apk add build-base git
@@ -7,7 +7,7 @@ COPY . /lakota
 RUN cd /lakota && \
     make
 
-FROM scratch
+FROM alpine:3.14
 COPY --from=builder /lakota/bin/lakota /lakota
-
+RUN ls /
 ENTRYPOINT ["/lakota"]

@@ -1,11 +1,16 @@
 BINDIR = bin
 BINARY = lakota
 
-VERSION := 0.1.0
-
-CFLAGS := -static -O3 -Wall \
+VERSION := 0.1.1
+CFLAGS := -O3 -Wall \
 	-Dgit_sha=$(shell git rev-parse HEAD) \
 	-Dapp_version=$(VERSION)
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S), "Linux")
+	CFLAGS += -static
+endif
 
 $(BINDIR)/$(BINARY): clean
 	$(CC) $(CFLAGS) -o $@ main.c words.c

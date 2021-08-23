@@ -46,6 +46,10 @@
 int
 main(int argc, char **argv)
 {
+    if (argc == 1) {
+        printf(USAGE, STR(bin_name));
+    }
+    
     int opt;
     
     while ((opt = getopt(argc, argv, "l:p:s:vh")) != -1) {
