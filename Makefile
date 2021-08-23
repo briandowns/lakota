@@ -1,10 +1,11 @@
 BINDIR = bin
 BINARY = lakota
 
-VERSION := 0.1.1
+VERSION := v0.1.1
 CFLAGS := -O3 -Wall \
 	-Dgit_sha=$(shell git rev-parse HEAD) \
-	-Dapp_version=$(VERSION)
+	-Dapp_version=$(VERSION)              \
+	-Dbin_name=$(BINARY)
 
 UNAME_S := $(shell uname -s)
 

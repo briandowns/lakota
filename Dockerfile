@@ -9,5 +9,4 @@ RUN cd /lakota && \
 
 FROM alpine:3.14
 COPY --from=builder /lakota/bin/lakota /lakota
-RUN ls /
 ENTRYPOINT ["/lakota"]

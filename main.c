@@ -35,13 +35,13 @@
 #define STR1(x) #x
 #define STR(x) STR1(x)
 
-#define USAGE                                                        \
-    "usage: %s [-vh]\n"                                              \
-    "  -l            english translation of the given Lakota word\n" \
-    "  -p            pronunciation for the given Lakota word\n"      \
-    "  -s            search for similar words for a given string\n"  \
-    "  -v            version\n"                                      \
-    "  -h            help\n"
+#define USAGE                                                    \
+    "usage: %s [-vh]\n"                                          \
+    "  -l        english translation of the given Lakota word\n" \
+    "  -p        pronunciation for the given Lakota word\n"      \
+    "  -s        search for similar words for a given string\n"  \
+    "  -v        version\n"                                      \
+    "  -h        help\n"
 
 int
 main(int argc, char **argv)
@@ -49,7 +49,7 @@ main(int argc, char **argv)
     if (argc == 1) {
         printf(USAGE, STR(bin_name));
     }
-    
+
     int opt;
     
     while ((opt = getopt(argc, argv, "l:p:s:vh")) != -1) {
