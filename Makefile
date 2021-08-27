@@ -1,7 +1,7 @@
 BINDIR = bin
 BINARY = lakota
 
-VERSION := v0.2.0
+VERSION := v0.3.0
 CFLAGS := -O3 -Wall \
 	-Dgit_sha=$(shell git rev-parse HEAD) \
 	-Dapp_version=$(VERSION)              \
@@ -14,7 +14,7 @@ ifeq ($(UNAME_S), "Linux")
 endif
 
 $(BINDIR)/$(BINARY): clean
-	$(CC) $(CFLAGS) -o $@ main.c words.c
+	$(CC) $(CFLAGS) -o $@ *.c
 
 $(BINDIR):
 	mkdir -p $(BINDIR)

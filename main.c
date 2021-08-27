@@ -40,64 +40,119 @@
     "  -l        English translation of the given Lakota word\n" \
     "  -e        Lakota translation of the given English word\n" \
     "  -p        pronunciation for the given Lakota word\n"      \
-    "  -s        search for similar words for a given string\n"  \
+    "  -f        fuzzy search for similar words to the given\n"  \
     "  -v        version\n"                                      \
     "  -h        help\n"
+
+#define SEARCH_LAKOTA  1
+#define SEARCH_ENGLISH 2
+#define PRONUNCIATION  3
+
+#define SEARCH(sl, pl) if (fuzzy) {                      \
+    for (int i = 0; i < WORD_COUNT; i++) {               \
+        if (strstr(words_dictionary[i].sl, word)) {      \
+            printf("%s (%s)\n", words_dictionary[i].sl,  \
+                words_dictionary[i].pl);                 \
+        }                                                \
+    }                                                    \
+    break;                                               \
+    }                                                    \
+    for (int i = 0; i < WORD_COUNT; i++) {               \
+        if (strcmp(word, words_dictionary[i].sl) == 0) { \
+            printf("%s\n", words_dictionary[i].pl);      \
+            break;                                       \
+        }                                                \
+    }
 
 int
 main(int argc, char **argv)
 {
     if (argc == 1) {
         printf(USAGE, STR(bin_name));
+        return 1;
     }
 
     int opt;
+    int operation, fuzzy = 0;
+    char *word;
     
-    while ((opt = getopt(argc, argv, "l:e:p:s:vh")) != -1) {
+    while ((opt = getopt(argc, argv, "fl:e:p:vh")) != -1) {
         switch (opt) {
             case 'l':
-                for (int i = 0; i < WORD_COUNT; i++) {
-                    if (strcmp(optarg, words_dictionary[i].lakota) == 0) {
-                        printf("%s\n", words_dictionary[i].english);
-                    }
-                }
+                operation = SEARCH_LAKOTA;
+                word = strdup(optarg);
                 break;
             case 'e':
-                for (int i = 0; i < WORD_COUNT; i++) {
-                    if (strcmp(optarg, words_dictionary[i].english) == 0) {
-                        printf("%s (%s)\n", words_dictionary[i].lakota, words_dictionary[i].pronunciation);
-                    }
-                }
+                operation = SEARCH_ENGLISH;
+                word = strdup(optarg);
                 break;
             case 'p':
-                for (int i = 0; i < WORD_COUNT; i++) {
-                    if (strcmp(optarg, words_dictionary[i].lakota) == 0) {
-                        printf("%s\n", words_dictionary[i].pronunciation);
-                        break;
-                    }
-                }
+                operation = PRONUNCIATION;
+                word = strdup(optarg);
                 break;
-            case 's':
-                for (int i = 0; i < WORD_COUNT; i++) {
-                    int res = words_match(optarg, strlen(optarg), 
-                        words_dictionary[i].lakota, 
-                        strlen(words_dictionary[i].lakota));
-                    if (res > 1 && res < 3) {
-                        printf("%s\n", words_dictionary[i].lakota);
-                    }
-                }
+            case 'f':
+                fuzzy = 1;
                 break;                
             case 'v':
                 printf("version: %s - git: %s\n", STR(app_version), STR(git_sha));
-                break;
+                return 0;
             case 'h':
                 printf(USAGE, STR(bin_name));
-                break;
+                return 0;
             default:
                 printf(USAGE, STR(bin_name));
-                break;
+                return 0;
         }
     }
 
+    switch(operation) {
+        case SEARCH_LAKOTA:
+            // if (fuzzy) {
+            //     for (int i = 0; i < WORD_COUNT; i++) {
+            //         if (strstr(word, words_dictionary[i].lakota)) {
+            //             printf("%s (%s)\n", words_dictionary[i].english, 
+            //                 words_dictionary[i].lakota);
+            //         }
+            //     }
+            //     break;
+            // } 
+            // for (int i = 0; i < WORD_COUNT; i++) {
+            //     if (strcmp(word, words_dictionary[i].lakota) == 0) {
+            //         printf("%s\n", words_dictionary[i].english);
+            //         break;
+            //     }
+            // }
+            SEARCH(lakota, english);
+            break;
+        case SEARCH_ENGLISH:
+            // if (fuzzy) {
+            //     for (int i = 0; i < WORD_COUNT; i++) {
+            //         if (strstr(word, words_dictionary[i].english)) {
+            //             printf("%s (%s) - %s\n", words_dictionary[i].lakota, 
+            //                 words_dictionary[i].pronunciation, 
+            //                 words_dictionary[i].english);
+            //         }
+            //     }
+            //     break;
+            // }
+            // for (int i = 0; i < WORD_COUNT; i++) {
+            //     if (strcmp(word, words_dictionary[i].english) == 0) {
+            //         printf("%s (%s)\n", words_dictionary[i].lakota, 
+            //             words_dictionary[i].pronunciation);
+            //     }
+            // }
+            SEARCH(english, lakota);
+            break;
+        case PRONUNCIATION:
+            for (int i = 0; i < WORD_COUNT; i++) {
+                if (strcmp(word, words_dictionary[i].lakota) == 0) {
+                    printf("%s\n", words_dictionary[i].pronunciation);
+                    break;
+                }
+            }
+    }
+
+    free(word);
+    
     return 0;
 }

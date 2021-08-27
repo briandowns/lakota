@@ -17,7 +17,7 @@ Lakota provides access to features that help you learn the Lakota language.
 ## Run
 
 ```sh
-docker run -rm -it briandowns/lakota -l waste
+docker run --rm -it briandowns/lakota -l waste
 ```
 
 ## Development

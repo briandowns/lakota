@@ -31,11 +31,6 @@
 #define WORD_COUNT 3364
 
 /**
- * words_match
- */
-int words_match(const char *s, int ls, const char *t, int lt);
-
-/**
  * word represents an entry in the Lakota/English
  * dictionary.
  */
