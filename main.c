@@ -107,40 +107,9 @@ main(int argc, char **argv)
 
     switch(operation) {
         case SEARCH_LAKOTA:
-            // if (fuzzy) {
-            //     for (int i = 0; i < WORD_COUNT; i++) {
-            //         if (strstr(word, words_dictionary[i].lakota)) {
-            //             printf("%s (%s)\n", words_dictionary[i].english, 
-            //                 words_dictionary[i].lakota);
-            //         }
-            //     }
-            //     break;
-            // } 
-            // for (int i = 0; i < WORD_COUNT; i++) {
-            //     if (strcmp(word, words_dictionary[i].lakota) == 0) {
-            //         printf("%s\n", words_dictionary[i].english);
-            //         break;
-            //     }
-            // }
             SEARCH(lakota, english);
             break;
         case SEARCH_ENGLISH:
-            // if (fuzzy) {
-            //     for (int i = 0; i < WORD_COUNT; i++) {
-            //         if (strstr(word, words_dictionary[i].english)) {
-            //             printf("%s (%s) - %s\n", words_dictionary[i].lakota, 
-            //                 words_dictionary[i].pronunciation, 
-            //                 words_dictionary[i].english);
-            //         }
-            //     }
-            //     break;
-            // }
-            // for (int i = 0; i < WORD_COUNT; i++) {
-            //     if (strcmp(word, words_dictionary[i].english) == 0) {
-            //         printf("%s (%s)\n", words_dictionary[i].lakota, 
-            //             words_dictionary[i].pronunciation);
-            //     }
-            // }
             SEARCH(english, lakota);
             break;
         case PRONUNCIATION:
