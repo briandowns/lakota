@@ -94,7 +94,8 @@ main(int argc, char **argv)
                 fuzzy = 1;
                 break;                
             case 'v':
-                printf("version: %s - git: %s\n", STR(app_version), STR(git_sha));
+                printf("version: %s - git: %s\n", STR(app_version),
+                    STR(git_sha));
                 return 0;
             case 'h':
                 printf(USAGE, STR(bin_name));
